@@ -7,109 +7,138 @@
 
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; /* A modern, sleek font */
     line-height: 1.6;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #f0f4f8; /* Softer background color */
+    padding: 0;
+    margin: 0;
 }
 
 /* Header Section */
 header {
-    background: #fff;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Gradient for a modern touch */
+    color: white;
     text-align: center;
-    padding: 100px 20px;
-    border-bottom: 1px solid #eaeaea;
+    padding: 120px 20px;
+    border-bottom: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-content h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 10px;
-    color: #333;
+    color: white;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: #777;
+    font-size: 1.4rem;
+    color: #e0e0e0;
 }
 
 .nav-links {
     list-style: none;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 0;
 }
 
 .nav-links li {
     display: inline;
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #0070f3;
+    color: white;
     font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    color: #ffe600; /* Highlight effect on hover */
 }
 
 /* Section Styles */
 section {
-    padding: 60px 20px;
-    max-width: 800px;
+    padding: 80px 20px;
+    max-width: 900px;
     margin: auto;
     text-align: center;
-    background: #fff;
-    margin-top: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 section h2 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #6a11cb; /* Add theme color */
 }
 
 section p {
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
 }
 
 /* Project Card Styles */
 .project-card {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin: 30px 0;
+    padding: 30px;
+    background: #f0f9ff; /* Soft light-blue background */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05); /* Slight zoom-in on hover for interactivity */
 }
 
 .project-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #2575fc; /* Match the theme color */
 }
 
 .project-card p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.1rem;
+    color: #555;
 }
 
 /* Contact Section */
 #contact p {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#contact a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+    color: #6a11cb;
 }
 
 /* Footer */
 footer {
-    background: #f5f5f5;
-    padding: 20px;
+    background: #6a11cb;
+    padding: 30px;
     text-align: center;
-    color: #777;
-    font-size: 0.9rem;
+    color: white;
+    font-size: 0.95rem;
     border-top: 1px solid #eaeaea;
 }
 
 footer p {
     margin: 0;
+    color: white;
 }
