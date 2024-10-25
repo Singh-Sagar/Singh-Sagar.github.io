@@ -76,8 +76,8 @@
             .style("opacity", 0.2); // Subtle effect
 
         // Sample data: Nodes and links
-        var nodes = d3.range(50).map(function() {  // Increase number of nodes for a larger effect
-            return { radius: Math.random() * 15 + 5 };  // Increase radius of nodes
+        var nodes = d3.range(100).map(function() {  // Increase number of nodes
+            return { radius: Math.random() * 6 + 2 };  // Small dots
         });
 
         var links = d3.range(nodes.length - 1).map(function(i) {
@@ -85,11 +85,11 @@
         });
 
         var simulation = d3.forceSimulation(nodes)
-            .force("link", d3.forceLink(links).distance(150))  // Increase link distance
-            .force("charge", d3.forceManyBody().strength(-50))  // Increase repulsion to spread out nodes
+            .force("link", d3.forceLink(links).distance(300))  // Increase link distance for more spread-out effect
+            .force("charge", d3.forceManyBody().strength(-150))  // Increase repulsion to spread nodes across the entire page
             .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("x", d3.forceX(width / 2).strength(0.05))  // Keeps nodes generally toward center
-            .force("y", d3.forceY(height / 2).strength(0.05))  // Keeps nodes generally toward center
+            .force("x", d3.forceX(width / 2).strength(0.01))  // Keeps nodes somewhat toward center
+            .force("y", d3.forceY(height / 2).strength(0.01))  // Keeps nodes somewhat toward center
             .on("tick", ticked);
 
         var link = svg.append("g")
@@ -105,7 +105,7 @@
             .selectAll("circle")
             .data(nodes)
             .enter().append("circle")
-            .attr("r", function(d) { return d.radius; })
+            .attr("r", function(d) { return d.radius; })  // Small node size
             .attr("fill", "#888");
 
         function ticked() {
