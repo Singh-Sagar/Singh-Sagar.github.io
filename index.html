@@ -39,11 +39,11 @@
         <h2>Projects</h2>
         <div class="project-card">
             <h3>Text Redactor</h3>
-            <p>Short description of your project.</p>
+            <p>A tool to automatically redact sensitive information from text using NLP techniques.</p>
         </div>
         <div class="project-card">
             <h3>Disease Predictor using Machine Learning</h3>
-            <p>Short description of your project.</p>
+            <p>Using machine learning to predict disease outcomes based on patient data.</p>
         </div>
     </section>
 
@@ -72,11 +72,11 @@
             .style("top", 0)
             .style("left", 0)
             .style("z-index", -1)
-            .style("opacity", 0.2); // Subtle effect
+            .style("opacity", 0.15); // Subtle effect
 
         // Sample data: Nodes and links
-        var nodes = d3.range(100).map(function() {  // Increase number of nodes
-            return { radius: Math.random() * 6 + 2 };  // Small dots
+        var nodes = d3.range(80).map(function() {  // Keep number of nodes lower for better performance
+            return { radius: Math.random() * 4 + 1.5 };  // Small dots
         });
 
         var links = d3.range(nodes.length - 1).map(function(i) {
@@ -84,28 +84,26 @@
         });
 
         var simulation = d3.forceSimulation(nodes)
-            .force("link", d3.forceLink(links).distance(300))  // Increase link distance for more spread-out effect
-            .force("charge", d3.forceManyBody().strength(-150))  // Increase repulsion to spread nodes across the entire page
+            .force("link", d3.forceLink(links).distance(200))  // Shorter link distance
+            .force("charge", d3.forceManyBody().strength(-100))  // Less repulsion
             .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("x", d3.forceX(width / 2).strength(0.01))  // Keeps nodes somewhat toward center
-            .force("y", d3.forceY(height / 2).strength(0.01))  // Keeps nodes somewhat toward center
             .on("tick", ticked);
 
         var link = svg.append("g")
             .attr("stroke", "#ddd")
-            .attr("stroke-width", 1.5)
+            .attr("stroke-width", 1)
             .selectAll("line")
             .data(links)
             .enter().append("line");
 
         var node = svg.append("g")
             .attr("stroke", "#fff")
-            .attr("stroke-width", 1.5)
+            .attr("stroke-width", 1)
             .selectAll("circle")
             .data(nodes)
             .enter().append("circle")
-            .attr("r", function(d) { return d.radius; })  // Small node size
-            .attr("fill", "#888");
+            .attr("r", function(d) { return d.radius; })
+            .attr("fill", "#999");
 
         function ticked() {
             link
@@ -119,19 +117,6 @@
                 .attr("cy", function(d) { return d.y; });
         }
 
-        // Continuous random movement for dynamic effect
-        function repeatMovement() {
-            nodes.forEach(function(node) {
-                node.vx = (Math.random() - 0.5) * 2;
-                node.vy = (Math.random() - 0.5) * 2;
-            });
-            simulation.alpha(0.8).restart();
-        }
-
-        // Repeat movement every 4 seconds
-        setInterval(repeatMovement, 4000);
-
-        // Responsive design for window resize
         window.addEventListener("resize", function() {
             width = window.innerWidth;
             height = window.innerHeight;

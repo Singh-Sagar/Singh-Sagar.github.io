@@ -1,3 +1,4 @@
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,39 +10,37 @@ body {
     color: #333;
     background-color: #f8f8f8;
     line-height: 1.6;
-    padding: 20px;
+    padding: 0 20px;
 }
 
-/* General Styles */
+/* General Container */
 header, section {
     width: 100%;
     max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    text-align: center; /* Center all text inside sections */
-}
-
-h1, h2, p {
-    margin-bottom: 20px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
 }
 
 /* Header Section */
 .header-content {
-    padding: 40px 20px;
-    background-color: #ffffff;
+    padding: 80px 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     color: #1cb98a;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #777;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .nav-links {
@@ -68,14 +67,14 @@ h1 {
 /* About Section */
 #about {
     margin-top: 50px;
-    padding: 30px;
-    background-color: #fff;
+    padding: 60px 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #about h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #1cb98a;
 }
 
@@ -90,8 +89,8 @@ h1 {
 /* Projects Section */
 #projects {
     margin-top: 50px;
-    padding: 30px;
-    background-color: #fff;
+    padding: 60px 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -102,8 +101,12 @@ h1 {
     margin: 20px auto;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
     max-width: 600px;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
 }
 
 .project-card h3 {
@@ -120,14 +123,14 @@ h1 {
 /* Contact Section */
 #contact {
     margin-top: 50px;
-    padding: 30px;
-    background-color: #fff;
+    padding: 60px 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #contact h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #1cb98a;
 }
 
@@ -139,7 +142,7 @@ h1 {
 /* Footer */
 footer {
     background-color: #1cb98a;
-    padding: 20px;
+    padding: 40px 0;
     text-align: center;
     color: white;
     margin-top: 50px;
@@ -152,19 +155,19 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header-content h1 {
-        font-size: 2rem;
-    }
-
-    .project-card {
-        max-width: 100%;
-    }
-
     h1, h2 {
         font-size: 1.8rem;
     }
 
     p {
         font-size: 1rem;
+    }
+
+    .header-content {
+        padding: 60px 20px;
+    }
+
+    .project-card {
+        max-width: 100%;
     }
 }
