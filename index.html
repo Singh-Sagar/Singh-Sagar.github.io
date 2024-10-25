@@ -59,11 +59,12 @@
         <p>&copy; 2024 Sagar Singh. All rights reserved.</p>
     </footer>
 
-    <!-- D3.js Background Animation -->
+    <!-- D3.js Background Animation (Node-Link Data Flow) -->
     <script>
         var width = window.innerWidth;
         var height = window.innerHeight;
 
+        // Create SVG container
         var svg = d3.select("#background-animation")
             .append("svg")
             .attr("width", width)
@@ -72,45 +73,57 @@
             .style("top", 0)
             .style("left", 0)
             .style("z-index", -1)
-            .style("opacity", 0.6);
+            .style("opacity", 0.2); // Subtle effect
 
-        // Create random data points for circles
-        var data = d3.range(150).map(function() {
-            return {
-                x: Math.random() * width,
-                y: Math.random() * height,
-                r: Math.random() * 10 + 5,
-                color: d3.interpolateRainbow(Math.random())
-            };
+        // Sample data: Nodes and links
+        var nodes = d3.range(30).map(function() {
+            return { radius: Math.random() * 8 + 3 };
         });
 
-        // Add circles to the SVG
-        var circles = svg.selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; })
-            .attr("r", function(d) { return d.r; })
-            .style("fill", function(d) { return d.color; });
+        var links = d3.range(nodes.length - 1).map(function(i) {
+            return { source: i, target: i + 1 };
+        });
 
-        // Animate the circles with random movement
-        function animateCircles() {
-            circles
-                .transition()
-                .duration(2000)
-                .attr("cx", function() { return Math.random() * width; })
-                .attr("cy", function() { return Math.random() * height; })
-                .on("end", animateCircles);
+        var simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).distance(100))
+            .force("charge", d3.forceManyBody().strength(-30))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .on("tick", ticked);
+
+        var link = svg.append("g")
+            .attr("stroke", "#ddd")
+            .attr("stroke-width", 1.5)
+            .selectAll("line")
+            .data(links)
+            .enter().append("line");
+
+        var node = svg.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .selectAll("circle")
+            .data(nodes)
+            .enter().append("circle")
+            .attr("r", function(d) { return d.radius; })
+            .attr("fill", "#888");
+
+        function ticked() {
+            link
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            node
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
         }
 
-        animateCircles();
-
-        // Update the SVG size when the window is resized
+        // Responsive design for window resize
         window.addEventListener("resize", function() {
             width = window.innerWidth;
             height = window.innerHeight;
             svg.attr("width", width).attr("height", height);
+            simulation.force("center", d3.forceCenter(width / 2, height / 2)).restart();
         });
     </script>
 </body>
