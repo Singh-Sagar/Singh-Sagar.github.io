@@ -6,8 +6,12 @@
     <title>Sagar Singh | Portfolio</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 <body>
+    <!-- Background Animation -->
+    <div id="background-animation"></div>
+
     <!-- Header Section -->
     <header>
         <div class="header-content">
@@ -54,5 +58,60 @@
     <footer>
         <p>&copy; 2024 Sagar Singh. All rights reserved.</p>
     </footer>
+
+    <!-- D3.js Background Animation -->
+    <script>
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        var svg = d3.select("#background-animation")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("position", "fixed")
+            .style("top", 0)
+            .style("left", 0)
+            .style("z-index", -1)
+            .style("opacity", 0.6);
+
+        // Create random data points for circles
+        var data = d3.range(150).map(function() {
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 10 + 5,
+                color: d3.interpolateRainbow(Math.random())
+            };
+        });
+
+        // Add circles to the SVG
+        var circles = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; })
+            .attr("r", function(d) { return d.r; })
+            .style("fill", function(d) { return d.color; });
+
+        // Animate the circles with random movement
+        function animateCircles() {
+            circles
+                .transition()
+                .duration(2000)
+                .attr("cx", function() { return Math.random() * width; })
+                .attr("cy", function() { return Math.random() * height; })
+                .on("end", animateCircles);
+        }
+
+        animateCircles();
+
+        // Update the SVG size when the window is resized
+        window.addEventListener("resize", function() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            svg.attr("width", width).attr("height", height);
+        });
+    </script>
 </body>
 </html>
